@@ -69,6 +69,6 @@ print 'Feature extraction complete'
 
 
 # Plotting
-plt.scatter(x1, y1, s=AREA, c=O)
-plt.scatter(x7, y7, s=AREA, c=S)
+plt.scatter(x1, y1, s=AREA, c=O, alpha=0.4)
+plt.scatter(x7, y7, s=AREA, c=S, alpha=0.4)
 plt.show()
