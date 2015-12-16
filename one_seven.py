@@ -29,16 +29,25 @@ SIZE = 10000
 images = mnist.train.images[:SIZE]
 labels = mnist.train.labels[:SIZE]
 
-array0, array7 = extract_1_7(images, labels)
+array1, array7 = extract_1_7(images, labels)
 
 # Feature Extraction
+def featureX(x):
+    pass
+
+def featureY(x):
+    pass
+
+x1 = map(featureX, array1)
+y1 = map(featureY, array1)
+x7 = map(featureX, array7)
+y7 = map(featureY, array7)
 
 # Plotting
-x1 = np.asarray([0.2, 0.1, -1])
-y1 = np.asarray([-2, 0.7, 1.3])
-x7 = np.asarray([0.5, 2.1, -4])
-y7 = np.asarray([2, -0.7, 2.1])
-colors = [O, S, S]
+#x1 = np.asarray([0.2, 0.1, -1])
+#y1 = np.asarray([-2, 0.7, 1.3])
+#x7 = np.asarray([0.5, 2.1, -4])
+#y7 = np.asarray([2, -0.7, 2.1])
 
 plt.scatter(x1, y1, s=AREA, c=O)
 plt.scatter(x7, y7, s=AREA, c=S)
