@@ -31,12 +31,20 @@ labels = mnist.train.labels[:SIZE]
 
 array1, array7 = extract_1_7(images, labels)
 
+print '1, 7 extraction complete'
+
 # Feature Extraction
+"""
+Feature function is a function from 784 dimensional float array to float value.
+
+[0., 0., ..., 0.2, 0.7] -> 0.7
+"""
 def featureX(x):
-    pass
+    return sum(x)
 
 def featureY(x):
-    pass
+    return sum(x)
+    #pass
 
 x1 = map(featureX, array1)
 y1 = map(featureY, array1)
