@@ -40,7 +40,10 @@ Feature function is a function from 784 dimensional float array to float value.
 [0., 0., ..., 0.2, 0.7] -> 0.7
 """
 def featureX(x):
-    return sum(x)
+    """
+    Count the number of pixels > 0
+    """
+    return len(filter(lambda x: x>0, x))
 
 def featureY(x):
     return sum(x)
