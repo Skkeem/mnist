@@ -9,6 +9,7 @@ SIZE = 1000
 O = 'r'
 S = 'b'
 
+
 # Data Loading
 mnist = input_data.read_data_sets("./data")
 
@@ -32,6 +33,7 @@ labels = mnist.train.labels[:SIZE]
 array1, array7 = extract_1_7(images, labels)
 
 print '1, 7 extraction complete'
+
 
 # Feature Extraction
 """
@@ -62,6 +64,9 @@ x1 = map(featureX, array1)
 y1 = map(featureY, array1)
 x7 = map(featureX, array7)
 y7 = map(featureY, array7)
+
+print 'Feature extraction complete'
+
 
 # Plotting
 plt.scatter(x1, y1, s=AREA, c=O)
