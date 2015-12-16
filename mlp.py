@@ -1,6 +1,7 @@
 import os
 import sys
 import timeit
+import matplotlib.pyplot as plt
 
 import numpy as np
 
@@ -199,6 +200,15 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
             }
     )
 
+    in_sample_test_model = theano.function(
+            inputs=[index],
+            outputs=classifier.errors(y),
+            givens={
+                x: train_set_x[index * batch_size:(index + 1) * batch_size],
+                y: train_set_y[index * batch_size:(index + 1) * batch_size]
+            }
+    )
+
     validate_model = theano.function(
             inputs=[index],
             outputs=classifier.errors(y),
@@ -239,6 +249,8 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
 
     epoch = 0
     done_looping = False
+    x_axis = []
+    y_axis = []
     while (epoch < n_epochs) and (not done_looping):
         epoch = epoch + 1
         for minibatch_index in xrange(n_train_batches):
@@ -280,9 +292,17 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
                         (epoch, minibatch_index + 1, n_train_batches,
                          test_score * 100.))
 
+                    x_axis.append(epoch)
+                    y_axis.append(test_score * 100.)
+
                 if patience <= iter:
                     done_looping = True
                     break
+
+    in_sample_losses = [in_sample_test_model(i) for i
+            in xrange(n_train_batches)]
+    in_sample_score = np.mean(in_sample_losses)
+    print('##in sample test error of %f %%' % (in_sample_score * 100.))
 
     end_time = timeit.default_timer()
     print(('Optimization complete. Best validation score of %f %% '
@@ -292,6 +312,9 @@ def test_mlp(learning_rate=0.01, L1_reg=0.00, L2_reg=0.0001, n_epochs=1000,
             os.path.split(__file__)[1] +
             ' ran for %.2fm' % ((end_time - start_time) / 60.))
 
+    plt.plot(np.asarray(x_axis), np.asarray(y_axis))
+    plt.show()
+
 
 if __name__ == '__main__':
-    test_mlp()
+    test_mlp(n_epochs=500)
