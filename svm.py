@@ -214,8 +214,6 @@ if __name__ == "__main__":
         correct = np.sum(y_predict == y_test)
         print "%d out of %d predictions correct" % (correct, len(y_predict))
 
-        # plot_margin(X_train[y_train==1], X_train[y_train==-1], clf)
-
     def test_non_linear():
         X1, y1, X2, y2 = gen_non_lin_separable_data()
         X_train, y_train = split_train(X1, y1, X2, y2)
@@ -227,8 +225,6 @@ if __name__ == "__main__":
         y_predict = clf.predict(X_test)
         correct = np.sum(y_predict == y_test)
         print "%d out of %d predictions correct" % (correct, len(y_predict))
-
-        # plot_contour(X_train[y_train==1], X_train[y_train==-1], clf)
 
     def test_soft():
         X1, y1, X2, y2 = gen_lin_separable_overlap_data()
