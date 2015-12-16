@@ -45,8 +45,16 @@ def featureX(x):
     """
     return len(filter(lambda x: x>0, x))
 
+""" find the leftmost x which is not zero """
 def featureY(x):
-    return sum(x)
+    v = 28
+
+    for j in range(0, 28):
+        for i in range(0, 28):
+            if x[i + j * 28] > 0 and i < v:
+		v = i
+
+    return v    
     #pass
 
 x1 = map(featureX, array1)
